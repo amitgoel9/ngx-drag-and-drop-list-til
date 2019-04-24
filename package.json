@@ -1,0 +1,49 @@
+{
+  "name": "ngx-drag-and-drop-list-til",
+  "version": "1.0.0",
+  "description": "angular drag and drop component for lists",
+  "main": "index.js",
+  "scripts": {
+    "ngc": "ngc",
+    "build": "npm run ngc && node ./scripts/copy-package",
+    "publishPackage": "npm run build && cd dist && npm publish",
+    "dev": "tsc --watch",
+    "postinstall": "tsc",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitgoel9/ngx-drag-and-drop-list.git"
+  },
+  "keywords": [
+    "drag",
+    "and",
+    "drop"
+  ],
+  "author": "amit goel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amitgoel9/ngx-drag-and-drop-list/issues"
+  },
+  "homepage": "https://github.com/amitgoel9/ngx-drag-and-drop-list#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/animations": "~6.0.7",
+    "@angular/common": "~6.0.7",
+    "@angular/compiler": "~6.0.7",
+    "@angular/core": "^6.0.7",
+    "@angular/forms": "~6.0.7",
+    "@angular/http": "~6.0.7",
+    "@angular/platform-browser": "^6.0.7",
+    "@angular/platform-browser-dynamic": "^6.0.7",
+    "@angular/platform-server": "~6.0.7",
+    "connect": "^3.6.6",
+    "serve-static": "^1.13.2",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.2.1",
+    "tslint": "^5.10.0",
+    "typescript": "~2.9.2",
+    "zone.js": "^0.8.26"
+  }
+}
