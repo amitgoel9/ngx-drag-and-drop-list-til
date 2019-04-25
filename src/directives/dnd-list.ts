@@ -54,7 +54,7 @@ export class DndList implements OnInit, OnDestroy {
     @HostListener('dragenter', ['$event'])
     public handleDragEnter(event: DragEvent): boolean {
         event = event['originalEvent'] || event;
-        const mimeType: string = this.getMimeType(event.dataTransfer.types);
+        const mimeType: string = this.getMimeType(event);
         if (!mimeType || !this.isDropAllowed(this.getItemType(mimeType))) {
             return true;
         }
@@ -66,7 +66,7 @@ export class DndList implements OnInit, OnDestroy {
     @HostListener('dragover', ['$event'])
     public handleDragOver(event: DragEvent): boolean {
         event = event['originalEvent'] || event;
-        const mimeType: string = this.getMimeType(event.dataTransfer.types);
+        const mimeType: string = this.getMimeType(event);
         const itemType: string = this.getItemType(mimeType);
         if (!mimeType || !this.isDropAllowed(itemType)) {
             return true;
@@ -128,7 +128,7 @@ export class DndList implements OnInit, OnDestroy {
         event = event['originalEvent'] || event;
 
         // Check whether the drop is allowed and determine mime type.
-        let mimeType: string = this.getMimeType(event.dataTransfer.types);
+        let mimeType: string = this.getMimeType(event);
         let itemType: string = this.getItemType(mimeType);
         if (!mimeType || !this.isDropAllowed(itemType)) return true;
 
@@ -233,8 +233,21 @@ export class DndList implements OnInit, OnDestroy {
      * Given the types array from the DataTransfer object, returns the first valid mime type.
      * A type is valid if it starts with MIME_TYPE, or it equals MSIE_MIME_TYPE or EDGE_MIME_TYPE.
      */
-    private getMimeType(types: string[]): string {
+ /*    private getMimeType(types: string[]): string {
         if (!types) return MSIE_MIME_TYPE; // IE 9 workaround.
+        for (let i: number = 0; i < types.length; i++) {
+            if (types[i] === MSIE_MIME_TYPE || types[i] === EDGE_MIME_TYPE ||
+                types[i].substr(0, MIME_TYPE.length) === MIME_TYPE) {
+                return types[i];
+            }
+        }
+        return null;
+    } */
+	
+	private getMimeType(event: DragEvent): string {
+		
+        if (!event.dataTransfer.types) return MSIE_MIME_TYPE; // IE 9 workaround.
+		let types : string[] = event.dataTransfer.types.concat();
         for (let i: number = 0; i < types.length; i++) {
             if (types[i] === MSIE_MIME_TYPE || types[i] === EDGE_MIME_TYPE ||
                 types[i].substr(0, MIME_TYPE.length) === MIME_TYPE) {

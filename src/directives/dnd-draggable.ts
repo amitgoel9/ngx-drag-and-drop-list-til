@@ -43,10 +43,11 @@ export class DndDraggable implements OnInit, OnDestroy {
         this.nativeElement.setAttribute(this.draggableString, 'true');
         /**
          * Workaround to make element draggable in IE9
+		 * 
          */
-        this.nativeElement.onselectstart = function (): void {
+        /* this.nativeElement.onselectstart = function (): void {
             if (this.dragDrop) this.dragDrop();
-        };
+        }; */
     }
 
     public ngOnInit(): void {
